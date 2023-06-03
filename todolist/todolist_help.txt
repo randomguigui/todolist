@@ -1,3 +1,7 @@
+use a terminal else it will not work narmally.
+green means it's tick
+red means it's untick
+
 function writeable in the general panel :
 new write_your_task        : create a new task
 del write_your_task        : delete a task
