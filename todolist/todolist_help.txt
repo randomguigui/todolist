@@ -7,11 +7,11 @@ show set                   : open the set panel
 quit                       : quit the to-do-list
 
 function writeable in show set:
-new write_your_task         : create a new set
-del write_your_task         : delete a set
-open write_your_task        : open a set
-quit                        : quit the to-do-list
-back                        : go back to the general panel
+new write_your_task        : create a new set
+del write_your_task        : delete a set
+open write_your_task       : open a set
+quit                       : quit the to-do-list
+back                       : go back to the general panel
 
 function writeable in open set:
 new write_your_task        : create a new task
