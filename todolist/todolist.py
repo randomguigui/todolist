@@ -15,7 +15,9 @@ def todolist_del(todolist):
     with open("todolist.json") as file:
         todolist_list = json.load(file)
 
-    del todolist_list[todolist]
+    if todolist in todolist_list:
+        del todolist_list[todolist]
+
 
     with open("todolist.json", "w+") as file:
         json.dump(todolist_list, file)
@@ -26,8 +28,6 @@ def tick(todolist):
 
     if todolist in todolist_list:
         todolist_list[todolist] = True
-    else:
-        print("element not in list")
 
     with open("todolist.json", "w+") as file:
         json.dump(todolist_list, file)
@@ -39,8 +39,6 @@ def untick(todolist):
 
     if todolist in todolist_list:
         todolist_list[todolist] = False
-    else:
-        print("element not in list")
 
     with open("todolist.json", "w+") as file:
         json.dump(todolist_list, file)
@@ -89,15 +87,16 @@ def del_set(set_name):
         json.dump(todolist_set_list, file)
 
 def open_set(set_name):
-    while True:
-        clear = lambda: os.system('cls')
-        clear()
-        color_red = "on_red"
-        color_green = "on_green"
-        color_check_red = tc.colored("X", "black", color_red)
-        color_check_green = tc.colored("0", "black", color_green)
-        with open("todolist_set.json", "r") as file:
-            todolist_set = json.load(file)
+    with open("todolist_set.json", "r") as file:
+        todolist_set = json.load(file)
+    if set_name in todolist_set:
+        while True:
+            clear = lambda: os.system('cls')
+            clear()
+            color_red = "on_red"
+            color_green = "on_green"
+            color_check_red = tc.colored("X", "black", color_red)
+            color_check_green = tc.colored("0", "black", color_green)
             if set_name in todolist_set:
                 print(f"{set_name} :")
                 for do in todolist_set[set_name]:
@@ -107,15 +106,15 @@ def open_set(set_name):
                     elif todolist_set[set_name][do] == False:
                         print(color_check_red, end=" ")
                         print(do)
+                key = input()
+                if key == "quit":
+                    quit()
+                if key == "back":
+                    break
+                else:
+                     command_set(set_name, key)
             else:
-                print("pas present")
-        key = input()
-        command_set(set_name, key)
-        if key == "quit":
-            quit()
-        if key == "back":
-            break
-
+                pass
 
 
 def show_set():
@@ -135,8 +134,6 @@ def add_set_task(set_name, task_name, statement=False):
         todolist_set_list = json.load(file)
     if task_name not in todolist_set_list[set_name]:
         todolist_set_list[set_name][task_name] = statement
-    else:
-        pass
 
     with open("todolist_set.json", "w+") as file:
         json.dump(todolist_set_list, file)
@@ -144,8 +141,8 @@ def add_set_task(set_name, task_name, statement=False):
 def del_set_task(set_name, task_name):
     with open("todolist_set.json") as file:
         todolist_set_list = json.load(file)
-
-    del todolist_set_list[set_name][task_name]
+    if todolist_set_list[set_name][task_name] in todolist_set_list[set_name]:
+        del todolist_set_list[set_name][task_name]
 
     with open("todolist_set.json", "w+") as file:
         json.dump(todolist_set_list, file)
@@ -156,8 +153,6 @@ def tick_set_task(set_name, task_name):
 
     if task_name in todolist_set_list[set_name]:
         todolist_set_list[set_name][task_name] = True
-    else:
-        print("element not in set")
 
     with open("todolist_set.json", "w+") as file:
         json.dump(todolist_set_list, file)
@@ -168,8 +163,6 @@ def untick_set_task(set_name, task_name):
 
     if task_name in todolist_set_list[set_name]:
         todolist_set_list[set_name][task_name] = False
-    else:
-        print("element not in set")
 
     with open("todolist_set.json", "w+") as file:
         json.dump(todolist_set_list, file)
@@ -198,25 +191,20 @@ def command_set(set_name, command="quit"):
             check_key = True
     name = "".join(name_set_list)
     command_final_set = "".join(key_list_final)
-    while True:
-        if command_final_set == "new":
-            task = name
-            add_set_task(set_name, task)
-        if command_final_set == "del":
-            task = name
-            del_set_task(set_name, task)
-        if command_final_set == "tick":
-            task = name
-            tick_set_task(set_name, task)
-        if command_final_set == "untick":
-            task = name
-            untick_set_task(set_name, task)
-        if command == "quit":
-            quit()
-        if command == "back":
-            break
-        if command == "help":
-            open_help()
+    if command_final_set == "new":
+        task = name
+        add_set_task(set_name, task)
+    if command_final_set == "del":
+        task = name
+        del_set_task(set_name, task)
+    if command_final_set == "tick":
+        task = name
+        tick_set_task(set_name, task)
+    if command_final_set == "untick":
+        task = name
+        untick_set_task(set_name, task)
+    if command == "help":
+        open_help()
 
 
 """commands writeable in the general to-do-list"""
@@ -255,7 +243,7 @@ def command(command):
             """commands writeable in the show sets panel"""
             clear = lambda: os.system('cls')
             clear()
-            print("set :")
+            print("sets :")
             show_set()
 
             key = input()
@@ -276,8 +264,6 @@ def command(command):
             if key_final_set == "open":
                 set_name = name_set
                 open_set(set_name)
-                clear = lambda: os.system('cls')
-                clear()
             if key_final_set == "new":
                 new_set_name = name_set
                 new_set(new_set_name)
