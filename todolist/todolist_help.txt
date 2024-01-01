@@ -1,26 +1,26 @@
-use a terminal else it will not work narmally.
-green means it's tick
-red means it's untick
+Todolist help/documentation:
 
-function writeable in the general panel :
-new write_your_task        : create a new task
-del write_your_task        : delete a task
-tick write_your_task       : tick a task
-untick write_your_task     : untick a task
-show set                   : open the set panel
-quit                       : quit the to-do-list
+In the todolist panels:
 
-function writeable in show set:
-new write_your_set         : create a new set
-del write_your_set         : delete a set
-open write_your_set        : open a set
-quit                       : quit the to-do-list
-back                       : go back to the general panel
+add/new task_name   	        ->  add a new task
+del task_name       		->  delete a task
+deln task_number    		->  delete a task with his number
+tick task_name	    		->  tick a task
+tickn task_number   		->  tick a task with his number
+untick task_name    		->  untick a task
+untickn task_number 		->  untick a task with his number
+move task_number new_position   ->  move a task to a new position
+q/quit				->  quit the program
+return				->  if not in the general panel, go back one panel
+set/sets			->  go to the sets panel
 
-function writeable in open set:
-new write_your_task        : create a new task
-del write_your_task        : delete a task
-tick write_your_task       : tick a task
-untick write_your_task     : untick a task
-quit                       : quit the to-do-list
-back                       : go back to the show set panel
+in the sets panel:
+
+a set is another todolist
+
+add/new	set_name		->  add a new set
+del set_name			->  delete a set
+deln set_number			->  delete a set with his number
+move set_number new_position    ->  move a set to a new position
+q/quit				->  quit the program
+return				->  go back to the general panel
