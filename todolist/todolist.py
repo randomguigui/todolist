@@ -317,17 +317,4 @@ class Set:
             if input_cmd[0] == "q" or input_cmd[0] == "quit":
                 quit()
 
-            
-    
-        
-
-
 Todolist("todolist.json", "general").run()
-
-
-
-
-
-
-
-
